@@ -1,0 +1,183 @@
+import ArticleInfo from '@/components/articleInfo';
+import MarkdownRenderer from '@/components/markdownRenderer/markdownRenderer';
+import Tags from '@/components/tags';
+import { Article } from '@/utils/article';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import Head from 'next/head';
+import { ParsedUrlQuery } from 'querystring';
+import { useState } from 'react';
+import { AiFillFacebook, AiFillLinkedin, AiFillRedditCircle, AiOutlineCheck, AiOutlineLink, AiOutlineTwitter } from 'react-icons/ai'
+
+interface ArticleProps {
+    article: Article;
+}
+
+export const getServerSideProps: GetServerSideProps<ArticleProps, ParsedUrlQuery> = async (
+    context: GetServerSidePropsContext<ParsedUrlQuery>
+) => {
+    const { article_id } = context.params || {};
+    const ROOT_URL = process.env.ROOT_URL;
+    const API_KEY = process.env.API_KEY;
+
+    // Make the API request to fetch the article data
+    const response = await fetch(`${ROOT_URL}/portlandai/articles/${article_id}`, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${API_KEY}`
+        },
+    });
+    const article: Article = await response.json();
+
+    return {
+        props: {
+            article,
+        },
+    };
+};
+
+export default function ArticlePage({ article }: ArticleProps) {
+
+    const [copied, setCopied] = useState(false)
+
+    const sources = () => {
+        const items = []
+        for (let i = 0; i < article.sources.length; i++) {
+            items.push(<a className='text-txt-400 hover:text-txt transition-all hover:underline' href={article.sources[i]} target="_blank" rel="noopener noreferrer"><p>- {article.sources[i]}</p></a>)
+        }
+        return items
+    }
+
+    const shareLink = (icon: JSX.Element, bgColor: string, link: string) => {
+        return <a href={link} target="_blank" rel="noopener noreferrer">
+            <div className={`${bgColor} text-white hover:opacity-60 transition-all p-2 rounded-md`}>
+                {icon}
+            </div>
+        </a>
+    }
+
+    const shareLinks = () => {
+        const items = []
+        const url = encodeURIComponent(`blog.portlandai.io/articles/${article.article_id}`);
+        const text = encodeURIComponent(article.title);
+
+        const facebookUrl = `https://www.facebook.com/sharer.php?u=${url}`;
+        const twitterUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+        const linkedInUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${text}`;
+        const redditUrl = `https://www.reddit.com/submit?url=${url}&title=${text}`;
+
+        items.push(shareLink(<AiFillFacebook size={25} />, "bg-facebook", facebookUrl))
+        items.push(shareLink(<AiOutlineTwitter size={25} />, "bg-twitter", twitterUrl))
+        items.push(shareLink(<AiFillLinkedin size={25} />, "bg-linkedin", linkedInUrl))
+        items.push(shareLink(<AiFillRedditCircle size={25} />, "bg-reddit", redditUrl))
+
+        return items
+    }
+
+    function wait(seconds: number): Promise<void> {
+        return new Promise<void>((resolve) => {
+            setTimeout(resolve, seconds * 1000);
+        });
+    }
+
+    async function copyToClipboard(text: string) {
+        try {
+            await navigator.clipboard.writeText(text);
+            setCopied(true)
+            await wait(3);
+            setCopied(false)
+        } catch (err) {
+            console.error('Failed to copy text: ', err);
+        }
+    }
+
+    const getCopyIcon = () => {
+        if (copied) {
+            return <AiOutlineCheck size={25} />
+        } else {
+            return <AiOutlineLink size={25} />
+        }
+    }
+
+    return <>
+        <Head>
+            <title>Portland AI - {article.title}</title>
+            <meta name="description" content={article.description} />
+            <meta name="keywords" content={article.keywords.join(',')} />
+            <meta name="author" content={article.author} />
+            <meta name="category" content={article.category} />
+            <meta name="article:published_time" content={new Date(article.created).toISOString()} />
+
+            {/* Open Graph tags */}
+            <meta property="og:title" content={article.title} />
+            <meta property="og:description" content={article.description} />
+            <meta property="og:type" content="article" />
+            <meta property="og:url" content={`https://blog.portlandai.io/article/${article.article_id}`} />
+            <meta property="og:image" content={article.article_cover_img} />
+            <meta property="og:image:alt" content={article.article_cover_img_description} />
+
+            {/* Twitter Card tags */}
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" content={article.title} />
+            <meta name="twitter:description" content={article.description} />
+            <meta name="twitter:image" content={article.article_cover_img} />
+            <meta name="twitter:image:alt" content={article.article_cover_img_description} />
+
+            {/* Schema.org markup */}
+            <script type="application/ld+json" dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Article",
+                    "mainEntityOfPage": {
+                        "@type": "WebPage",
+                        "@id": `https://blog.portlandai.io/article/${article.article_id}`
+                    },
+                    "headline": article.title,
+                    "description": article.description,
+                    "image": [article.article_cover_img],
+                    "author": {
+                        "@type": "Person",
+                        "name": article.author
+                    },
+                    "datePublished": new Date(article.created).toISOString(),
+                    "publisher": {
+                        "@type": "Organization",
+                        "name": "Portland AI",
+                        "logo": {
+                            "@type": "ImageObject",
+                            "url": "https://blog.portlandai.op/portandai.png",
+                            "width": 1024,
+                            "height": 1024
+                        }
+                    }
+                })
+            }} />
+        </Head>
+        <div className="space-y-8">
+            <h1 className='text-4xl md:text-6xl font-light'>{article.title}</h1>
+            <div className="space-y-4 grid place-items-center">
+                <img src={article.article_cover_img} alt={article.article_cover_img_description} className={`object-scale-down max-h-[300px]`} />
+                <p className='text-txt-400 font-light text-center max-w-2xl'>{article.description}</p>
+            </div>
+            <Tags tags={article.keywords} />
+            <ArticleInfo article={article} />
+            <MarkdownRenderer content={`${article.content!.replace(/\\n/g, '\n')}\n> This article was autonomously written and edited by artificial intelligence using custom software developed by Portland AI. While every effort has been made to ensure the quality of this content, it should be noted that the AI does not understand or interpret information in the same way a human would, and there may be inadvertent errors or omissions. If you want to learn more about how this system works, or are interested in integrating it into your own business, visit portlandai.io/auto-blog.`} />
+            <div className="space-y-1">
+                <p className='font-light'>Share This Article:</p>
+                <div className="flex space-x-2 items-center">
+                    <button onClick={(_) => copyToClipboard(`blog.portlandai.io/articles/${article.article_id}`)}>
+                        <div className={`bg-acc2 text-white hover:opacity-60 transition-all p-2 rounded-md hover:cursor-pointer`}>
+                            {getCopyIcon()}
+                        </div>
+                    </button>
+                    {shareLinks()}
+                </div>
+            </div>
+            <div className="space-y-2">
+                <h4 className='font-light'>Sources:</h4>
+                <div className="">
+                    {sources()}
+                </div>
+            </div>
+        </div>
+    </>
+}
