@@ -144,7 +144,7 @@ export default function ArticlePage({ article }: ArticleProps) {
                         "name": "Portland AI",
                         "logo": {
                             "@type": "ImageObject",
-                            "url": "https://blog.portlandai.op/portandai.png",
+                            "url": "https://blog.portlandai.io/favicon.ico",
                             "width": 1024,
                             "height": 1024
                         }
