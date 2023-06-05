@@ -1,5 +1,4 @@
 import Image from "next/image"
-import CodeBlock from "./codeBlock"
 import { IoIosInformationCircleOutline } from 'react-icons/io'
 import { ReactMarkdown } from "react-markdown/lib/react-markdown"
 
@@ -80,9 +79,6 @@ export default function MarkdownRenderer({ content }: { content: string }) {
     }
 
     const MarkdownComponents: object = {
-        code({ node, inline, className, ...props }: any) {
-            return CodeBlock({ node, inline, className, ...props })
-        },
         blockquote({ node, inline, className, ...props }: any) {
             return <div className="pt-4 px-4 border border-bg-acc rounded-md">
                 <div className="flex space-x-2 content-center text-txt-400">

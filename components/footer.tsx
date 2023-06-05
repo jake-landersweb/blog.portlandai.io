@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="max-w-[1200px] px-4 mx-auto space-y-2">
             <div className="group flex items-center transition-all space-x-4">
                 <Image props={{
-                    src: '/portlandai.png',
+                    src: '/favicon.ico',
                     alt: '',
                     divClass: "h-[50px]",
                     imgClass: "h-[50px]"

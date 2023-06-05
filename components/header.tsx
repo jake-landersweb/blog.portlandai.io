@@ -22,7 +22,7 @@ const Header = () => {
                         <NextLink href="/" onClick={(e) => closeMenu()}>
                             <div className="group flex items-center transition-all space-x-4">
                                 <Image props={{
-                                    src: '/portlandai.png',
+                                    src: '/favicon.ico',
                                     alt: '',
                                     divClass: "h-[50px]",
                                     imgClass: "h-[50px]"
