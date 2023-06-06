@@ -40,19 +40,6 @@ const Home: NextPage<ArticleListProps> = ({ error, articles, page, totalPages })
             <title>Portland AI - Latest Articles</title>
             <meta name="description" content="Explore contemporary discussion of the intersection of AI and other sectors of the world." />
             <link rel="canonical" href="https://blog.portlandai.io" />
-
-            <script async src="https://www.googletagmanager.com/gtag/js?id=G-2QC05WSRCX"></script>
-            <script
-                dangerouslySetInnerHTML={{
-                    __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-
-              gtag('config', 'G-2QC05WSRCX');
-            `,
-                }}
-            />
         </Head>
         <div className="space-y-8">
             <ArticleList articles={articles} />
