@@ -168,7 +168,7 @@ export default function ArticlePage({ article }: ArticleProps) {
                 <div className="p-4 bg-acc w-min rounded-full text-white"><TbRobot size={50} /></div>
                 <div className="space-y-2 flex-grow">
                     <h3 className="text-2xl font-medium">AI Content Generation</h3>
-                    <p className="font-light">This article was generated completely automonously using AI. Seamlessly combine AI prowess and traditional programming expertise: the Autonomous AI-Powered Blog Management Platform. Our platform is a testament to the creative potential of AI, offering a fully automated, AI-run blog operation that can create, manage, and grow your online presence. It's not just a tool—it's a dynamic partner that can take your content strategy to the next level.</p>
+                    <p className="font-light">This article was generated completely automonously using AI. Seamlessly combine AI prowess and traditional programming expertise: the Autonomous AI-Powered Blog Management Platform. Our platform is a testament to the creative potential of AI, offering a fully automated, AI-run blog operation that can create, manage, and grow your online presence. It&apos;s not just a tool—it&apos;s a dynamic partner that can take your content strategy to the next level.</p>
                 </div>
                 <a href="https://portlandai.io" target="_blank" rel="noopener noreferrer"><p className="hover:underline hover:cursor-pointer hover:text-acc w-fit">Learn More &rarr;</p></a>
             </div>
