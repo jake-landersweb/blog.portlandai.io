@@ -27,7 +27,7 @@ export default function ArticleInfo({ article }: { article: Article }) {
     }
 
     return <div className="">
-        <div className="md:hidden">{small()}</div>
-        <div className="hidden md:block">{large()}</div>
+        <div className="lg:hidden">{small()}</div>
+        <div className="hidden lg:block">{large()}</div>
     </div>
 }

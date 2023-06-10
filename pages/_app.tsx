@@ -64,7 +64,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                             </div>
                         </div>
                         <div className="col-span-8 md:col-span-6 overflow-auto">
-                            <div className="max-w-[900px] mx-auto py-8 px-4">
+                            <div className="max-w-[1000px] mx-auto py-8 px-4">
                                 <Component {...pageProps} />
                             </div>
                         </div>
