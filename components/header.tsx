@@ -60,7 +60,7 @@ const Header = () => {
                         </div>
                     </button>
                 )}
-                <Menu
+                <Menu onClick={(_) => closeMenu()}
                     className={`top-0 right-0 w-[75vw] py-[75px] pb-4 space-y-2 px-4 bg-cont fixed h-screen z-40 ease-in-out duration-300 border-l border-cont-200 overflow-auto ${isOpen ? "translate-x-0 " : "translate-x-full"}`}
                 />
             </div>

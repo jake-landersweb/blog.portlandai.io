@@ -10,10 +10,11 @@ interface ArticleListProps {
     error: boolean;
     articles: Article[];
     page: number;
-    totalPages: number;
+    morePages: boolean;
+    category: string | null;
 }
 
-const Home: NextPage<ArticleListProps> = ({ error, articles, page, totalPages }) => {
+const Home: NextPage<ArticleListProps> = ({ error, articles, page, morePages, category }) => {
     if (error) {
         return <ServerError />
     }
@@ -25,12 +26,19 @@ const Home: NextPage<ArticleListProps> = ({ error, articles, page, totalPages })
                 <p className='px-4 py-2 bg-cont-100 rounded-md text-txt hover:opacity-50 transition-opacity'>Previous page</p>
             </Link>)
         }
-        if (page < totalPages) {
+        if (morePages) {
             items.push(<Link href={`/?page=${page + 1}`}>
                 <p className='px-4 py-2 bg-main rounded-md text-white hover:opacity-50 transition-opacity'>Next page</p>
             </Link>)
         }
         return items
+    }
+
+    const getCat = () => {
+        if (category == null) {
+            return "Recent Posts"
+        }
+        return category
     }
 
     return <>
@@ -39,11 +47,13 @@ const Home: NextPage<ArticleListProps> = ({ error, articles, page, totalPages })
             <meta name="description" content="Explore contemporary discussion of the intersection of AI and other sectors of the world." />
             <link rel="canonical" href="https://blog.portlandai.io" />
         </Head>
-        <div className="space-y-8">
-            <h2 className='text-3xl md:text-4xl font-light'>Recent Posts</h2>
-            <ArticleList articles={articles} />
-            <div className="flex items-center space-x-2">
-                {nav()}
+        <div className="space-y-4 md:space-y-2">
+            <h2 className='text-3xl md:text-4xl font-light'>{getCat()}</h2>
+            <div className="space-y-8">
+                <ArticleList articles={articles} />
+                <div className="flex items-center space-x-2">
+                    {nav()}
+                </div>
             </div>
         </div>
     </>
@@ -87,7 +97,8 @@ export const getServerSideProps: GetServerSideProps<ArticleListProps, QueryParam
                     error: false,
                     articles: res.body.articles,
                     page: pageNumber,
-                    totalPages: res.body.pages,
+                    morePages: res.body.more,
+                    category: cat == undefined ? null : cat,
                 }
             };
         } else {
@@ -97,7 +108,8 @@ export const getServerSideProps: GetServerSideProps<ArticleListProps, QueryParam
                     error: true,
                     articles: [],
                     page: 1,
-                    totalPages: 0,
+                    morePages: false,
+                    category: null,
                 }
             }
         }
@@ -108,7 +120,8 @@ export const getServerSideProps: GetServerSideProps<ArticleListProps, QueryParam
                 error: true,
                 articles: [],
                 page: 1,
-                totalPages: 0,
+                morePages: false,
+                category: null,
             }
         };
     }

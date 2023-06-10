@@ -40,18 +40,18 @@ function MyApp({ Component, pageProps }: AppProps) {
             <main>
                 <div className="min-h-screen mx-auto">
                     <div className="grid grid-cols-8 gap-4 pt-[65px] md:pt-0">
-                        <div className="hidden md:block md:col-span-2 bg-cont-100">
-                            <div className="sticky top-4 overflow-auto whitespace-normal mx-auto max-w-[500px] p-4">
+                        <div className="hidden md:block md:col-span-2 bg-cont-100 min-h-[100vh]">
+                            <div className="sticky top-4 overflow-auto whitespace-normal mx-auto max-w-[500px] py-4 px-2 lg:px-8">
                                 <div className="space-y-2 mr-2">
                                     <Link href="/">
                                         <div className="group flex items-center transition-all space-x-2">
                                             <Image props={{
                                                 src: '/portlandai.svg',
                                                 alt: '',
-                                                divClass: "h-[50px]",
-                                                imgClass: "h-[50px]"
+                                                divClass: "h-[50px] w-[50px]",
+                                                imgClass: "h-[50px] w-[50px]"
                                             }} />
-                                            <h1 className='font-jose text-3xl pt-[6px]'>Portland AI</h1>
+                                            <h1 className='font-jose text-2xl lg:text-3xl pt-[6px]'>Portland AI</h1>
                                         </div>
                                     </Link>
                                     <p className='text-txt-300 font-light'>

@@ -8,5 +8,5 @@ export default function ArticleList({ articles }: { articles: Article[] }) {
         items.push(<ArticleCell article={articles[i]} />)
     }
 
-    return <div className="space-y-8 md:space-y-16">{items}</div>
+    return <div className="space-y-4 md:space-y-16">{items}</div>
 }
