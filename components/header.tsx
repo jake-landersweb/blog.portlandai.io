@@ -15,19 +15,19 @@ const Header = () => {
     };
 
     return (
-        <div className="bg-white z-50 items-center w-screen grid place-items-center fixed top-0 left-0 h-[65px]">
+        <div className="bg-cont border border-b-cont-200 z-50 items-center w-screen grid place-items-center fixed top-0 left-0 h-[65px]">
             <div className="flex items-center justify-between max-w-[1200px] w-full px-2">
                 <div className="flex space-x-4">
                     <div className="">
                         <NextLink href="/" onClick={(e) => closeMenu()}>
-                            <div className="group flex items-center transition-all space-x-4">
+                            <div className="group flex items-center transition-all space-x-2">
                                 <Image props={{
-                                    src: '/favicon.ico',
+                                    src: '/portlandai.svg',
                                     alt: '',
                                     divClass: "h-[50px]",
                                     imgClass: "h-[50px]"
                                 }} />
-                                <h1 className='font-jose text-2xl pt-1'>Portland AI Auto Blog</h1>
+                                <h1 className='font-jose text-3xl pt-[6px]'>Portland AI</h1>
                             </div>
                         </NextLink>
                     </div>

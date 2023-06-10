@@ -1,4 +1,3 @@
-import { Vendor } from '@/utils/vendor'
 import NextLink from 'next/link'
 
 export default function Menu({ className }: { className: string }) {

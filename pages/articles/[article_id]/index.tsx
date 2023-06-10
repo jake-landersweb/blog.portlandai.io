@@ -7,6 +7,7 @@ import Head from 'next/head';
 import { ParsedUrlQuery } from 'querystring';
 import { useState } from 'react';
 import { AiFillFacebook, AiFillLinkedin, AiFillRedditCircle, AiOutlineCheck, AiOutlineLink, AiOutlineTwitter } from 'react-icons/ai'
+import { TbRobot } from 'react-icons/tb'
 
 interface ArticleProps {
     article: Article;
@@ -159,13 +160,23 @@ export default function ArticlePage({ article }: ArticleProps) {
                 <p className='text-txt-400 font-light text-center max-w-2xl'>{article.description}</p>
             </div>
             <Tags tags={article.keywords} />
-            <ArticleInfo article={article} />
-            <MarkdownRenderer content={`${article.content!.replace(/\\n/g, '\n')}\n> This article was autonomously written and edited by artificial intelligence using custom software developed by Portland AI. While every effort has been made to ensure the quality of this content, it should be noted that the AI does not understand or interpret information in the same way a human would, and there may be inadvertent errors or omissions. If you want to learn more about how this system works, or are interested in integrating it into your own business, visit portlandai.io/auto-blog.`} />
+            <div className="hidden md:block">
+                <ArticleInfo article={article} />
+            </div>
+            <MarkdownRenderer content={`${article.content!.replace(/\\n/g, '\n')}`} />
+            <div data-aos="fade-up" className="bg-cont p-4 space-y-4 rounded-md flex flex-col justify-center items-start h-full">
+                <div className="p-4 bg-acc w-min rounded-full text-white"><TbRobot size={50} /></div>
+                <div className="space-y-2 flex-grow">
+                    <h3 className="text-2xl font-medium">AI Content Generation</h3>
+                    <p className="font-light">This article was generated completely automonously using AI. Seamlessly combine AI prowess and traditional programming expertise: the Autonomous AI-Powered Blog Management Platform. Our platform is a testament to the creative potential of AI, offering a fully automated, AI-run blog operation that can create, manage, and grow your online presence. It's not just a tool—it's a dynamic partner that can take your content strategy to the next level.</p>
+                </div>
+                <a href="https://portlandai.io" target="_blank" rel="noopener noreferrer"><p className="hover:underline hover:cursor-pointer hover:text-acc w-fit">Learn More &rarr;</p></a>
+            </div>
             <div className="space-y-1">
                 <p className='font-light'>Share This Article:</p>
                 <div className="flex space-x-2 items-center">
                     <button onClick={(_) => copyToClipboard(`blog.portlandai.io/articles/${article.article_id}`)}>
-                        <div className={`bg-acc2 text-white hover:opacity-60 transition-all p-2 rounded-md hover:cursor-pointer`}>
+                        <div className={`bg-acc text-white hover:opacity-60 transition-all p-2 rounded-md hover:cursor-pointer`}>
                             {getCopyIcon()}
                         </div>
                     </button>

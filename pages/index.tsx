@@ -1,9 +1,7 @@
 import ArticleList from '@/components/articleList';
-import ArticlePager from '@/components/articlePager';
 import { Article, getArticles } from '@/utils/article';
 import { GetServerSideProps, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Head from 'next/head';
 import ServerError from '@/components/serverError';
@@ -42,6 +40,7 @@ const Home: NextPage<ArticleListProps> = ({ error, articles, page, totalPages })
             <link rel="canonical" href="https://blog.portlandai.io" />
         </Head>
         <div className="space-y-8">
+            <h2 className='text-3xl md:text-4xl font-light'>Recent Posts</h2>
             <ArticleList articles={articles} />
             <div className="flex items-center space-x-2">
                 {nav()}

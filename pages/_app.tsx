@@ -3,11 +3,21 @@ import type { AppProps } from 'next/app'
 import Header from '../components/header'
 import Footer from '../components/footer';
 import Menu from '@/components/menu';
-import { GetServerSideProps } from 'next';
-import { Vendor, getVendor } from '@/utils/vendor';
 import Head from 'next/head';
+import Link from 'next/link';
+import Image from '@/components/image';
+import { useEffect } from 'react';
+import AOS from "aos";
 
 function MyApp({ Component, pageProps }: AppProps) {
+    useEffect(() => {
+        AOS.init({
+            easing: "ease-out-cubic",
+            once: true,
+            offset: 50,
+        });
+    }, []);
+
     return <>
         <Head>
             <script async src="https://www.googletagmanager.com/gtag/js?id=G-2QC05WSRCX"></script>
@@ -24,15 +34,26 @@ function MyApp({ Component, pageProps }: AppProps) {
             />
         </Head>
         <div className="scroll-smooth text-txt">
-            <header>
+            <header className='md:hidden'>
                 <Header />
             </header>
             <main>
-                <div className="max-w-[1200px] p-[65px] px-4 space-y-16 min-h-screen mx-auto">
-                    <div className="grid grid-cols-8">
-                        <div className="hidden md:block md:col-span-2">
-                            <div className="sticky top-[65px] overflow-auto whitespace-normal">
+                <div className="min-h-screen mx-auto">
+                    <div className="grid grid-cols-8 gap-4 pt-[65px] md:pt-0">
+                        <div className="hidden md:block md:col-span-2 bg-cont-100">
+                            <div className="sticky top-4 overflow-auto whitespace-normal mx-auto max-w-[500px] p-4">
                                 <div className="space-y-2 mr-2">
+                                    <Link href="/">
+                                        <div className="group flex items-center transition-all space-x-2">
+                                            <Image props={{
+                                                src: '/portlandai.svg',
+                                                alt: '',
+                                                divClass: "h-[50px]",
+                                                imgClass: "h-[50px]"
+                                            }} />
+                                            <h1 className='font-jose text-3xl pt-[6px]'>Portland AI</h1>
+                                        </div>
+                                    </Link>
                                     <p className='text-txt-300 font-light'>
                                         Explore contemporary discussion of the intersection of AI and other sectors of the world.
                                     </p>
@@ -43,7 +64,9 @@ function MyApp({ Component, pageProps }: AppProps) {
                             </div>
                         </div>
                         <div className="col-span-8 md:col-span-6 overflow-auto">
-                            <Component {...pageProps} />
+                            <div className="max-w-[900px] mx-auto py-8 px-4">
+                                <Component {...pageProps} />
+                            </div>
                         </div>
                     </div>
                 </div>

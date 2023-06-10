@@ -1,4 +1,3 @@
-import Image from "next/image"
 import { IoIosInformationCircleOutline } from 'react-icons/io'
 import { ReactMarkdown } from "react-markdown/lib/react-markdown"
 
@@ -90,7 +89,7 @@ export default function MarkdownRenderer({ content }: { content: string }) {
         },
         // remove large headers, as they are most likely a mistake
         h1: (props: any) => {
-            return <div className=""></div>
+            return <></>
         },
         h2: (props: any) => {
             const arr = props.children
@@ -188,7 +187,7 @@ export default function MarkdownRenderer({ content }: { content: string }) {
                 </div>
                 <div className="border-t border-cont-200 w-full"></div>
                 <div className="grid grid-cols-4 place-items-center">
-                    <div className="prose prose-stone prose-a:text-main hover:prose-a:opacity-50 transiton-all max-w-full col-span-4 prose-headings:text-main">
+                    <div className="prose prose-stone prose-a:text-main hover:prose-a:opacity-50 transiton-all max-w-full col-span-4 prose-headings:text-main prose-headings:font-light">
                         <ReactMarkdown components={MarkdownComponents}>
                             {content}
                         </ReactMarkdown>
