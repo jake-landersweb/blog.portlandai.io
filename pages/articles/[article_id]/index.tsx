@@ -14,11 +14,6 @@ interface ArticleProps {
     article: Article;
 }
 
-export async function getStaticPaths() {
-    const paths: any[] = [];
-    return { paths, fallback: 'blocking' };
-}
-
 export const getServerSideProps: GetServerSideProps<ArticleProps, ParsedUrlQuery> = async (
     context: GetServerSidePropsContext<ParsedUrlQuery>
 ) => {
