@@ -113,7 +113,7 @@ export default function ArticlePage({ article }: ArticleProps) {
             <meta property="og:title" content={article.title} />
             <meta property="og:description" content={article.description} />
             <meta property="og:type" content="article" />
-            <meta property="og:url" content={`https://blog.portlandai.io/article/${article.article_id}`} />
+            <meta property="og:url" content={`https://blog.portlandai.io/articles/${article.article_id}`} />
             <meta property="og:image" content={article.article_cover_img} />
             <meta property="og:image:alt" content={article.article_cover_img_description} />
 
