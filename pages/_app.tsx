@@ -8,6 +8,17 @@ import Link from 'next/link';
 import Image from '@/components/image';
 import { useEffect } from 'react';
 import AOS from "aos";
+import { NextUIProvider, createTheme } from '@nextui-org/react';
+
+const theme = createTheme({
+    type: "light", // it could be "light" or "dark"
+    theme: {
+        colors: {
+            primary: '#3C63EC',
+            secondary: '#A47DE2',
+        },
+    }
+})
 
 function MyApp({ Component, pageProps }: AppProps) {
     useEffect(() => {
@@ -38,38 +49,40 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <Header />
             </header>
             <main>
-                <div className="min-h-screen mx-auto">
-                    <div className="grid grid-cols-8 gap-4 pt-[65px] md:pt-0">
-                        <div className="hidden md:block md:col-span-2 bg-cont-100 min-h-[100vh]">
-                            <div className="sticky top-4 overflow-auto whitespace-normal mx-auto max-w-[500px] py-4 px-2 lg:px-8">
-                                <div className="space-y-2 mr-2">
-                                    <Link href="/">
-                                        <div className="group flex items-center transition-all space-x-2">
-                                            <Image props={{
-                                                src: '/portlandai.svg',
-                                                alt: '',
-                                                divClass: "h-[50px] w-[50px]",
-                                                imgClass: "h-[50px] w-[50px]"
-                                            }} />
-                                            <h1 className='font-jose text-2xl lg:text-3xl pt-[6px]'>Portland AI</h1>
+                <NextUIProvider theme={theme}>
+                    <div className="min-h-screen mx-auto">
+                        <div className="grid grid-cols-8 gap-4 pt-[65px] md:pt-0">
+                            <div className="hidden md:block md:col-span-2 bg-cont-100 min-h-[100vh]">
+                                <div className="sticky top-4 overflow-auto whitespace-normal mx-auto max-w-[500px] py-4 px-2 lg:px-8">
+                                    <div className="space-y-2 mr-2">
+                                        <Link href="/">
+                                            <div className="group flex items-center transition-all space-x-2">
+                                                <Image props={{
+                                                    src: '/portlandai.svg',
+                                                    alt: '',
+                                                    divClass: "h-[50px] w-[50px]",
+                                                    imgClass: "h-[50px] w-[50px]"
+                                                }} />
+                                                <h1 className='font-jose text-2xl lg:text-3xl pt-[6px]'>Portland AI</h1>
+                                            </div>
+                                        </Link>
+                                        <p className='text-txt-300 font-light'>
+                                            Explore contemporary discussion of the intersection of AI and other sectors of the world.
+                                        </p>
+                                        <div className="my-10">
+                                            <Menu className={''} />
                                         </div>
-                                    </Link>
-                                    <p className='text-txt-300 font-light'>
-                                        Explore contemporary discussion of the intersection of AI and other sectors of the world.
-                                    </p>
-                                    <div className="my-10">
-                                        <Menu className={''} />
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="col-span-8 md:col-span-6 overflow-auto">
-                            <div className="max-w-[1000px] mx-auto py-8 px-4">
-                                <Component {...pageProps} />
+                            <div className="col-span-8 md:col-span-6 overflow-auto">
+                                <div className="max-w-[1000px] mx-auto py-8 px-4">
+                                    <Component {...pageProps} />
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </NextUIProvider>
             </main>
             <footer>
                 <Footer />

@@ -23,6 +23,15 @@ export default function Menu({ className, onClick }: { className: string, onClic
         <div className="space-y-2">
             <h3 className='text-sm font-semibold text-gray-400'>Categories</h3>
             {items}
+            <div className="border border-cont-200 bg-white p-2 rounded-md space-y-2">
+                <div className="">
+                    <p className='text-xs font-medium text-acc'>Portland AI</p>
+                    <h4 className='font-light text-txt-500'>Want to use this technology for your own site or business?</h4>
+                </div>
+                <div className="">
+                    <a className="underline text-txt-400 hover:text-acc transition-colors" href="https://portlandai.io/#auto-blog" target="_blank" rel="noopener noreferrer">Learn more &rarr;</a>
+                </div>
+            </div>
         </div>
     </div>
 }
