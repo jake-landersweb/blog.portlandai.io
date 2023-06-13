@@ -4,7 +4,7 @@ import Link from "next/link"
 const NotFound = () => {
     return <>
         <Head>
-            <title key="title">Sapphire - Not Found</title>
+            <title key="title">PortlandAI - Not Found</title>
             <meta name="keywords" id="keywords" content="Pacific Northwest Development,Portland Software Development,Oregon Software Development,Local Web Development,Mobile App Development,Portland Mobile App Development,Pretty Software,Ellegant UI,Luxury Software Development" />
         </Head>
         <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
