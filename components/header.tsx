@@ -22,12 +22,12 @@ const Header = () => {
                         <NextLink href="/" onClick={(e) => closeMenu()}>
                             <div className="group flex items-center transition-all space-x-2">
                                 <Image props={{
-                                    src: '/portlandai.svg',
+                                    src: '/sapphire-nw.svg',
                                     alt: '',
                                     divClass: "h-[50px]",
                                     imgClass: "h-[50px]"
                                 }} />
-                                <h1 className='font-jose text-3xl pt-[6px]'>Portland AI</h1>
+                                <h1 className='font-jose text-3xl pt-[6px]'>Sapphire NW</h1>
                             </div>
                         </NextLink>
                     </div>

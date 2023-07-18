@@ -102,7 +102,7 @@ export default function ArticlePage({ article }: ArticleProps) {
 
     return <>
         <Head>
-            <title>Portland AI - {article.title}</title>
+            <title>Sapphire NW - {article.title}</title>
             <meta name="description" content={article.description} />
             <meta name="keywords" content={article.keywords.join(',')} />
             <meta name="author" content={article.author} />
@@ -143,7 +143,7 @@ export default function ArticlePage({ article }: ArticleProps) {
                     "datePublished": new Date(article.created).toISOString(),
                     "publisher": {
                         "@type": "Organization",
-                        "name": "Portland AI",
+                        "name": "Sapphire NW",
                         "logo": {
                             "@type": "ImageObject",
                             "url": "https://blog.portlandai.io/favicon.ico",

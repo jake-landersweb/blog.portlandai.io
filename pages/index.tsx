@@ -43,7 +43,7 @@ const Home: NextPage<ArticleListProps> = ({ error, articles, page, morePages, ca
 
     return <>
         <Head>
-            <title>Portland AI - Latest Articles</title>
+            <title>Sapphire NW - Latest Articles</title>
             <meta name="description" content="Explore contemporary discussion of the intersection of AI and other sectors of the world." />
             <link rel="canonical" href="https://blog.portlandai.io" />
         </Head>

@@ -108,11 +108,11 @@ export default function Form({ article_id }: { article_id: string }) {
 
     return <div>
         <div className="p-8 rounded-md bg-cont-100 w-fit space-y-8 lg:max-w-2xl text-lt">
-            <h4 className="text-2xl md:text-4xl font-bold">Portland AI Auto-Blog</h4>
+            <h4 className="text-2xl md:text-4xl font-bold">Sapphire NW Auto-Blog</h4>
             <div className="space-y-2 pb-4">
-                <p>Experience the cutting-edge innovation behind this blog post, powered by Portland AI&apos;s transformative auto-blog generation technology. Ready to revolutionize your business? Harness the potential of this advanced tech today. Explore integration possibilities by completing the form below. Step into the future of content creation with us!</p>
+                <p>Experience the cutting-edge innovation behind this blog post, powered by Sapphire NW&apos;s transformative auto-blog generation technology. Ready to revolutionize your business? Harness the potential of this advanced tech today. Explore integration possibilities by completing the form below. Step into the future of content creation with us!</p>
                 <div className="">
-                    <a className="underline hover:text-acc transition-colors" href="https://portlandai.io/#auto-blog" target="_blank" rel="noopener noreferrer">Learn how it works &rarr;</a>
+                    <a className="underline hover:text-acc transition-colors" href="https://sapphirenw.com/auto-blog" target="_blank" rel="noopener noreferrer">Learn how it works &rarr;</a>
                 </div>
             </div>
             <div className="">

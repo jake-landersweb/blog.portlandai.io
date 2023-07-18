@@ -25,11 +25,11 @@ export default function Menu({ className, onClick }: { className: string, onClic
             {items}
             <div className="border border-cont-200 bg-white p-2 rounded-md space-y-2">
                 <div className="">
-                    <p className='text-xs font-medium text-acc'>Portland AI</p>
+                    <p className='text-xs font-medium text-acc'>Sapphire NW</p>
                     <h4 className='font-light text-txt-500'>Want to use this technology for your own site or business?</h4>
                 </div>
                 <div className="">
-                    <a className="underline text-txt-400 hover:text-acc transition-colors" href="https://portlandai.io/#auto-blog" target="_blank" rel="noopener noreferrer">Learn more &rarr;</a>
+                    <a className="underline text-txt-400 hover:text-acc transition-colors" href="https://sapphirenw.com/auto-blog" target="_blank" rel="noopener noreferrer">Learn more &rarr;</a>
                 </div>
             </div>
         </div>

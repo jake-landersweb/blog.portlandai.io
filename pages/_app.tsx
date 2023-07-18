@@ -58,12 +58,11 @@ function MyApp({ Component, pageProps }: AppProps) {
                                         <Link href="/">
                                             <div className="group flex items-center transition-all space-x-2">
                                                 <Image props={{
-                                                    src: '/portlandai.svg',
+                                                    src: '/sapphire-nw-text-blue.svg',
                                                     alt: '',
-                                                    divClass: "h-[50px] w-[50px]",
-                                                    imgClass: "h-[50px] w-[50px]"
+                                                    divClass: "h-[50px]",
+                                                    imgClass: "h-[50px]"
                                                 }} />
-                                                <h1 className='font-jose text-2xl lg:text-3xl pt-[6px]'>Portland AI</h1>
                                             </div>
                                         </Link>
                                         <p className='text-txt-300 font-light'>
