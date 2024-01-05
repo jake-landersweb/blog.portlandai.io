@@ -131,7 +131,7 @@ export default function ArticlePage({ article }: ArticleProps) {
                     "@type": "Article",
                     "mainEntityOfPage": {
                         "@type": "WebPage",
-                        "@id": `https://blog.portlandai.io/article/${article.article_id}`
+                        "@id": `https://blog.portlandai.io/articles/${article.article_id}`
                     },
                     "headline": article.title,
                     "description": article.description,
